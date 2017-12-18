@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
+import Formaddition from './Formaddition';
 
 export default class Main extends Component {
     constructor() {
         super();
         this.state = {
             filedMetrics: [],
-            dates: [],
+            dates: []
         }
     }
     componentDidMount() {
@@ -49,20 +50,23 @@ export default class Main extends Component {
     }
     render() {
         return (
-            <div className="row">
-                <div className="col-xs-12">
-                    <table className="table table-striped">
-                        <tbody>
-                            <tr>
-                                <th>Metric Name</th>
-                                <th>Data type</th>
-                                { this.createTableHeaderDates() }
-                            </tr>
-                            { this.createTableRows() }
-                        </tbody>
-                        
-                    </table>
+            <div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <table className="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Metric Name</th>
+                                    <th>Data type</th>
+                                    { this.createTableHeaderDates() }
+                                </tr>
+                                { this.createTableRows() }
+                            </tbody>
+                            
+                        </table>
+                    </div>
                 </div>
+                <Formaddition check={this.state.dates} />
             </div>
         );
     }

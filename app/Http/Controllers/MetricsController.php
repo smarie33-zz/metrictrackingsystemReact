@@ -14,23 +14,7 @@ class MetricsController extends Controller
 {
     public function index(){
 
-		$filedMetrics = [];
-		$metrics = Metric::getMetrics();
-		foreach ($metrics as $metric) {
-			$filedMetrics[]['name'] = $metric->name;
-			$filedMetrics[]['metrics'] = MetricData::getMetricsData($metric->id)->orderBy('date', 'ASC')->get(['id','metric_id','i_number','d_number','date']);
-		}
-
-		$dates = Dates::getTheseDates();
-
-		$types['i'] = DB::connection()->getDoctrineColumn('metrics_data', 'i_number')->getType()->getName();
-		$types['d'] = DB::connection()->getDoctrineColumn('metrics_data', 'd_number')->getType()->getName();
-
-		//$tableAssets = [];
-		//array_push($tableAssets, $filedMetrics, $dates, $types);
-		
-		//return $tableAssets;
-	    return view('welcome.index', compact('filedMetrics','dates','types'));
+	    return view('welcome.index');
     }
 
     public function buildTable(){
@@ -85,7 +69,6 @@ class MetricsController extends Controller
 		$tableAssets['dates'] = $dates;
 		
 		return $tableAssets;
-	    //return view('welcome.index', compact('filedMetrics','dates','types'));
     }
 
     public function store(Request $request){
