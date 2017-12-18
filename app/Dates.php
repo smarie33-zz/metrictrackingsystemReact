@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dates extends Model
 {
     public static function scopeGetTheseDates($query){
-    	return $query->select('id','date')->get();
+    	return $query->select('id','date')->orderBy('date','ASC')->get();
     }
 
     public static function scopeGetOnlyDates($query){

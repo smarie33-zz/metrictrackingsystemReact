@@ -8,7 +8,6 @@ export default class Main extends Component {
         this.state = {
             filedMetrics: [],
             dates: [],
-            types: []
         }
     }
     componentDidMount() {
@@ -18,22 +17,33 @@ export default class Main extends Component {
             })
             .then(tableAssets => {
                 console.log(tableAssets)
-                this.setState({ filedMetrics: tableAssets['filedMetrics'], dates: tableAssets['dates'], types: tableAssets['types'] })
+                this.setState({ filedMetrics: tableAssets['filedMetrics'], dates: tableAssets['dates'] })
             });
     }
-    createTableRows() {
-        let s = this.state;
-        return s.filedMetrics.map((metric) => {
+    createTableHeaderDates() {
+        return this.state.dates.map((date, index) => {
             return (
-                <tr key="{metric.id}">
-                    <td className="sm-metric-name-table" data-id="{metric.id}">{metric.name}</td>
-                    {metric.metrics[0].i_number != null &&
-                        <td>{{s.types.i}}</td>
-                    }
-                    {metric.metrics[0].d_number != null &&
-                        <td>{{s.types.d}}</td>
-                    }
+                <th key={index}>
+                    {date.formatted}
+                </th>     
+            );
+        })
+    }
+    createTableRows() {
+        return this.state.filedMetrics.map((metric, index) => {
+            return (
+                <tr key={index}>
+                    <td className="sm-metric-name-table" data-id={metric.id}>{metric.name}</td>
+                    <td>{metric.type}</td>
+                    { this.getDataForRows(metric.metrics) }
                 </tr>     
+            );
+        })
+    }
+    getDataForRows(metrics) {
+        return metrics.map((data, index) => {
+            return (
+                <td key={index} data-id={data.id}>{data.point}</td>
             );
         })
     }
@@ -43,6 +53,11 @@ export default class Main extends Component {
                 <div className="col-xs-12">
                     <table className="table table-striped">
                         <tbody>
+                            <tr>
+                                <th>Metric Name</th>
+                                <th>Data type</th>
+                                { this.createTableHeaderDates() }
+                            </tr>
                             { this.createTableRows() }
                         </tbody>
                         

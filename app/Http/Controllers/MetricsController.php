@@ -8,6 +8,7 @@ use App\Dates;
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
 
 class MetricsController extends Controller
 {
@@ -34,6 +35,8 @@ class MetricsController extends Controller
 
     public function buildTable(){
 
+    	$dates = Dates::getTheseDates();
+
 		$filedMetrics = [];
 		$metrics = Metric::getMetrics();
 		foreach ($metrics as $metric) {
@@ -41,19 +44,45 @@ class MetricsController extends Controller
 			$fullMetrics['id'] = $metric->id;
 			$fullMetrics['name'] = $metric->name;
 			$fullMetrics['type'] = $metric->type;
-			$fullMetrics['metrics'] = MetricData::getMetricsData($metric->id)->orderBy('date', 'ASC')->get(['id','metric_id','i_number','d_number','date']);
+			$fullMetrics['metrics'] = [];
+
+			$getMetrics = MetricData::getMetricsData($metric->id)->orderBy('date', 'ASC')->get(['id','metric_id','i_number','d_number','date']);
+			
+			$orgCount = count($getMetrics);
+	        foreach ($dates as $dindex=>$date):
+	        	$dates[$dindex]['formatted'] = Carbon::parse($date->date)->format('M-Y');
+	            foreach ($getMetrics as $index=>$data):
+	            	$leDatas = [];
+	                if ($date->formatted == Carbon::parse($data->date)->format('M-Y') && $index != count($getMetrics) -1 || $date->formatted == Carbon::parse($data->date)->format('M-Y') && $index == count($getMetrics) -1):
+	                    if ($data->i_number != null):
+	                    	$leDatas['id'] = $data->id;
+	                        $leDatas['point'] = $data->i_number;
+	                    elseif ($data->d_number != null):
+	                    	$leDatas['id'] = $data->id;
+	                        $leDatas['point'] = $data->d_number;
+	                    endif;
+	                    unset($getMetrics[$index]);
+	                    break;
+	                else:
+	                    $leDatas['id'] = "";
+	                	$leDatas['point'] = "";
+	                endif;
+	            endforeach;
+	            if ($dindex > $orgCount):
+	                $leDatas['id'] = "";
+	                $leDatas['point'] = "";
+	            endif;
+	            $fullMetrics['metrics'][] = $leDatas;
+	        endforeach;
+
 			$filedMetrics[] = $fullMetrics;
 		}
 
-		$dates = Dates::getTheseDates();
-
-		$types['i'] = DB::connection()->getDoctrineColumn('metrics_data', 'i_number')->getType()->getName();
-		$types['d'] = DB::connection()->getDoctrineColumn('metrics_data', 'd_number')->getType()->getName();
+		
 
 		$tableAssets = [];
 		$tableAssets['filedMetrics'] = $filedMetrics;
 		$tableAssets['dates'] = $dates;
-		$tableAssets['types'] = $types;
 		
 		return $tableAssets;
 	    //return view('welcome.index', compact('filedMetrics','dates','types'));
