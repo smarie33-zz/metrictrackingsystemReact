@@ -8,17 +8,17 @@ laravel, react, sass for Pilot
 
 ## structures edited/added
 + front end: 
-⋅⋅⋅+ resources > assets > js > components
-⋅⋅⋅+ resources > assets > js > sass
-⋅⋅⋅+ resources > views
-⋅⋅⋅+ routes
-+back end:
-⋅⋅⋅+ .evn
-⋅⋅⋅+ package.json
-⋅⋅⋅+ database > migrations
-⋅⋅⋅+ app > [Models]
-⋅⋅⋅+ app > Http > Controllers
-⋅⋅⋅+ app > Http > Middleware
+⋅⋅* resources > assets > js > components
+⋅⋅* resources > assets > js > sass
+⋅⋅* resources > views
+⋅⋅* routes
++ back end:
+⋅⋅* .evn
+⋅⋅* package.json
+⋅⋅* database > migrations
+⋅⋅* app > [Models]
+⋅⋅* app > Http > Controllers
+⋅⋅* app > Http > Middleware
 
 ## interface functions
 + single page app updated dynamically via json and laravel api points
