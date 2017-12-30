@@ -7,18 +7,18 @@ laravel, react, sass for Pilot
 + npm 5.5.1
 
 ## structures edited/added
-+ front end: 
-⋅⋅-resources > assets > js > components
-⋅⋅-resources > assets > js > sass
-⋅⋅-resources > views
-⋅⋅-routes
-+ back end:
-⋅⋅-.evn
-⋅⋅-package.json
-⋅⋅-database > migrations
-⋅⋅-app > [Models]
-⋅⋅-app > Http > Controllers
-⋅⋅-app > Http > Middleware
+### front end: 
++ resources > assets > js > components
++ resources > assets > js > sass
++ resources > views
++ routes
+### back end:
++ .evn
++ package.json
++ database > migrations
++ app > [Models]
++ app > Http > Controllers
++ app > Http > Middleware
 
 ## interface functions
 + single page app updated dynamically via json and laravel api points
@@ -38,7 +38,7 @@ laravel, react, sass for Pilot
 ## set up
 1. Install Laravel and Composer if you do not have it [https://laracasts.com/series/laravel-from-scratch-2017/episodes/1](https://laracasts.com/series/laravel-from-scratch-2017/episodes/1)
 2. Add Laravel folder to your valet directory
-⋅⋅-cd into folder and run `valet link` if the localhost url does not work
+⋅⋅cd into folder and run `valet link` if the localhost url does not work
 3. Add database credentials to .env file
 4. Run `php artisan migrate` to add tables to database
 5. Run `npm install`
