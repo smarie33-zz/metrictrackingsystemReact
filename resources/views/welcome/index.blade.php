@@ -4,8 +4,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-xs-12">
-            <h1 class="text-center">Shannon's Pilot Engineering Test :-)</h1>
+        <div class="col">
+            <h1 class="text-center mt-5 mb-5">Shannon's Pilot Engineering Test :-)</h1>
         </div>
     </div>
 

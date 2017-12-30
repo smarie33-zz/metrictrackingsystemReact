@@ -1,6 +1,4 @@
-@import url("//netdna.bootstrapcdn.com/bootstrap/3.0.0-rc2/css/bootstrap-glyphicons.css");
-<style>
-	html, body {
+html, body {
         background-color: #fff;
         color: #000;
         font-family: 'Raleway', sans-serif;
@@ -9,28 +7,14 @@
         margin: 0;
     }
 
-   h1{
-    padding: 20px 0;
-   }
-
-   .sm-padding-top-40{
-        padding-top:20px;
-   }
-
-   .sm-hide{
-    display: none;
-   }
-
-   .sm-delete-point{
-    cursor: pointer;
-   }
-
    .sm-metric-date, .sm-metric-point{
     padding-right: 20px;
    }
 
    .sm-delete-point{
     float:right;
+    margin-top: 3px;
+    cursor: pointer;
    }
 
    .sm-metric-datas{
@@ -53,22 +37,15 @@
         background-color: #E7E7E7;
     }
 
-    .parsley-errors-list{
-        list-style: none;
+    ul{
+      list-style: none;
+      &.sm-update-list{
         padding: 0;
-        color: #BE0505;
+        li{
+          padding-bottom: 10px;
+        }
+      }
+      &.error-detail{
+        padding-left: 15px;
+      }
     }
-
-    .parsley-error:focus{
-        border-color: #BE0505;
-    }
-
-    .sm-error-bg{
-        background-color: #BE0505;
-    }
-
-    #sm-list-error{
-        color: #BE0505;
-        padding-top: 10px;
-    }
-</style>

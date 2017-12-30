@@ -18,4 +18,6 @@ Route::get('metrics', 'MetricsController@buildTable');
 
 Route::post('save-metric','MetricsController@store');
 
-Route::delete('delete-metric','MetricsController@destroy');
+Route::post('update-metric','MetricsController@update');
+
+Route::post('delete-metric','MetricsController@destroy');

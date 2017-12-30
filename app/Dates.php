@@ -12,10 +12,14 @@ class Dates extends Model
 
     public static function scopeGetOnlyDates($query){
     	$gottenDates = $query->select('date')->get();
-    	$dateArray = array();
+    	$dateArray = [];
     	foreach($gottenDates as $gottenDate){
     		$dateArray[] = $gottenDate->date;
     	}
     	return $dateArray;
+    }
+
+    public static function scopeGetDateByDate($query, $date){
+        return $query->where('date', $date);
     }
 }

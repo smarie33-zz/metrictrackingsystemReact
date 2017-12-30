@@ -9,4 +9,3 @@
   <script src="http://parsleyjs.org/dist/parsley.min.js"></script>
   <script src="https://momentjs.com/downloads/moment.min.js"></script>
   <script src="js/shannon.js"></script>
- 

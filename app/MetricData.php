@@ -12,4 +12,13 @@ class MetricData extends Model
     	return $query->where('metric_id', $metricID);
     }
 
+    public static function scopeGetOnlyMetricDates($query){
+    	$gottenDates = $query->select('date')->get();
+    	$dateArray = [];
+    	foreach($gottenDates as $gottenDate){
+    		$dateArray[] = $gottenDate->date;
+    	}
+    	return $dateArray;
+    }
+
 }
