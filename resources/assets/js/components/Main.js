@@ -109,7 +109,7 @@ export default class Main extends Component {
             .then(response => response.json())
             .then(data => {
                 this.getMetrics()
-                this.setState({errorAddition: '', createMetricData: [], error: '', createMetricType: 'Integer', datesEntered: []})
+                this.setState({errorAddition: '', createMetricData: [], error: '', createMetricType: '', 'createMetricName': '', datesEntered: []})
             })
             .catch(error => {
                 this.setState({errorAddition: error.message})
@@ -510,6 +510,7 @@ export default class Main extends Component {
             <div>
                 <Table 
                     createTableHeaderDates={this.createTableHeaderDates.bind(this)}
+                    filedMetrics={this.state.filedMetrics}
                     createTableRows={this.createTableRows.bind(this)} />
                 <hr className="mt-3 mb-3" />
                 <MetricFunctionDropdown

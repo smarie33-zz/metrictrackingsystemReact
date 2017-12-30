@@ -61155,7 +61155,7 @@ var Main = function (_Component) {
                     return response.json();
                 }).then(function (data) {
                     _this2.getMetrics();
-                    _this2.setState({ errorAddition: '', createMetricData: [], error: '', createMetricType: 'Integer', datesEntered: [] });
+                    _this2.setState({ errorAddition: '', createMetricData: [], error: '', createMetricType: '', 'createMetricName': '', datesEntered: [] });
                 }).catch(function (error) {
                     _this2.setState({ errorAddition: error.message });
                 });
@@ -61648,6 +61648,7 @@ var Main = function (_Component) {
                 null,
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_5__Table__["a" /* default */], {
                     createTableHeaderDates: this.createTableHeaderDates.bind(this),
+                    filedMetrics: this.state.filedMetrics,
                     createTableRows: this.createTableRows.bind(this) }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', { className: 'mt-3 mb-3' }),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_6__Functiondropdown__["a" /* default */], {
@@ -74163,7 +74164,7 @@ var Table = function Table(props) {
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
             { className: "col" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            props.filedMetrics.length > 0 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 "div",
                 { className: "table-responsive" },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -74190,6 +74191,11 @@ var Table = function Table(props) {
                         props.createTableRows()
                     )
                 )
+            ),
+            props.filedMetrics.length < 1 && __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "h2",
+                null,
+                "Add a metric to create the table"
             )
         )
     );
