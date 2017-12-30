@@ -47,19 +47,13 @@ class MetricsController extends Controller
 		                    elseif ($data->d_number != null):
 		                        $leDatas['point'] = $data->d_number;
 		                    endif;
-		                    //unset($getMetrics[$index]);
 		                    break;
 		                else:
 		                    $leDatas['id'] = "";
 		                	$leDatas['point'] = "";
-		                	//unset($getMetrics[$index]);
 		                endif;
 	                endif;
 	            endforeach;
-	            // if ($dindex > $orgCount):
-	            //     $leDatas['id'] = "";
-	            //     $leDatas['point'] = "";
-	            // endif;
 	            $fullMetrics['metrics'][] = $leDatas;
 	        endforeach;
 
@@ -192,8 +186,6 @@ class MetricsController extends Controller
 	    	foreach($noLongerInPoints as $toRemove):
 	    		$dbDates = Dates::where('date', $toRemove)->delete();
 			endforeach;
-	    	//$deleteDates = new Dates;
-	    	//$deleteDates->destroy($deleteTheseDates);
 	    endif;
 	    $returnArray = $noLongerInPoints;
 	    return $returnArray;

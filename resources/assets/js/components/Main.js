@@ -49,21 +49,21 @@ export default class Main extends Component {
     constructor() {
         super();
         this.state = {
-            filedMetrics: [],
-            dates: [],
-            createMetricName: '',
-            createMetricType: '',
-            createMetricData: [],
-            datesEntered: [],
-            errorRemoval: '',
-            errorAddition: '',
-            errorUpdate: '',
-            error: '',
-            mDeleteDDSelected: 0,
-            mDeletepSelected: '',
-            mUpdateDDSelected: 0,
-            mUpdateMetricSelected: '',
-            metricFunction: 'add-metric',
+            'filedMetrics': [],
+            'dates': [],
+            'createMetricName': '',
+            'createMetricType': '',
+            'createMetricData': [],
+            'datesEntered': [],
+            'errorRemoval': '',
+            'errorAddition': '',
+            'errorUpdate': '',
+            'error': '',
+            'mDeleteDDSelected': 0,
+            'mDeletepSelected': '',
+            'mUpdateDDSelected': 0,
+            'mUpdateMetricSelected': '',
+            'metricFunction': 'add-metric',
             schema,
             updateSchema,
             updateUiSchema,
@@ -94,16 +94,16 @@ export default class Main extends Component {
         if(this.state.errorAddition == ''){
             let s = this.state
             fetch( '/save-metric', {
-               method:'POST',
-               headers: {
+               'method':'POST',
+               'headers': {
                  'Accept': 'application/json',
                  'Content-Type': 'application/json',
                },
-               body: JSON.stringify({
-                    metricName: s.createMetricName,
-                    type: s.createMetricType,
-                    metrics: s.createMetricData,
-                    addDates: s.datesEntered
+               'body': JSON.stringify({
+                    'metricName': s.createMetricName,
+                    'type': s.createMetricType,
+                    'metrics': s.createMetricData,
+                    'addDates': s.datesEntered
                })
             })
             .then(response => response.json())
@@ -155,9 +155,9 @@ export default class Main extends Component {
                     compensate++
                 }
                 if(filedMetrics['metrics'][i]['point'] != ''){
-                    nonstateS.properties[d] = {type: 'string', format: 'date'},
-                    nonstateS.properties[p] = {type: 'string', pattern: pattern, message: message}
-                    nonstateS.properties[id] = {type: 'string'}
+                    nonstateS.properties[d] = {'type': 'string', 'format': 'date'},
+                    nonstateS.properties[p] = {'type': 'string', 'pattern': pattern, 'message': message}
+                    nonstateS.properties[id] = {'type': 'string'}
                     nonstateS.required.push(p)
                     nonstateU[d] = {'ui:options': {label: false}, classNames: 'mb-1'}
                     nonstateU[p] = {'ui:options': {label: false}, classNames: 'mb-4'}
@@ -165,7 +165,7 @@ export default class Main extends Component {
                     nonstateD[d] = filedMetrics['metrics'][i]['date']
                     nonstateD[p] = filedMetrics['metrics'][i]['point'].toString()
                     nonstateD[id] = filedMetrics['metrics'][i]['id'].toString()
-                    this.setState({updateSchema: nonstateS, updateFormData: nonstateD, updateUiSchema: nonstateU})
+                    this.setState({'updateSchema': nonstateS, 'updateFormData': nonstateD, 'updateUiSchema': nonstateU})
                 }
             }
         }
@@ -190,12 +190,12 @@ export default class Main extends Component {
         nonstateS.required.push('pointDate'+newPos)
         nonstateS.required.push('point'+newPos)
         nonstateS.properties['pointDate'+newPos] = {type: 'string', format: 'date'}
-        nonstateS.properties['id'+newPos] = {type: 'string'}
-        nonstateS.properties['point'+newPos] = {type: 'string', pattern: pattern, message: message}
-        nonstateU['pointDate'+newPos] = {'ui:options': {label: false}, classNames: 'mb-1'}
-        nonstateU['point'+newPos] = {'ui:options': {label: false}, classNames: 'mb-4'}
+        nonstateS.properties['id'+newPos] = {'type': 'string'}
+        nonstateS.properties['point'+newPos] = {'type': 'string', 'pattern': pattern, 'message': message}
+        nonstateU['pointDate'+newPos] = {'ui:options': {'label': false}, 'classNames': 'mb-1'}
+        nonstateU['point'+newPos] = {'ui:options': {'label': false}, 'classNames': 'mb-4'}
         nonstateU['id'+newPos] = {'ui:widget': 'hidden'}
-        this.setState({updateSchema: nonstateS, updateUiSchema: nonstateU})
+        this.setState({'updateSchema': nonstateS, 'updateUiSchema': nonstateU})
     }
     transformErrorsUpdate(errors) {
         return errors.map(error => {
@@ -203,7 +203,7 @@ export default class Main extends Component {
             if (this.state.updateSchema.properties[prop]['message'] != '' ) {
                 return {
                   ...error,
-                  message: this.state.updateSchema.properties[prop]['message']
+                  'message': this.state.updateSchema.properties[prop]['message']
                 };
             }
             return error;
@@ -253,12 +253,12 @@ export default class Main extends Component {
         if(data.formData.metricType == 'Integer'){
             schema.required = ['metricDataI', 'metricDate']
             schema.properties = Object.assign(schema.properties, {              
-              metricDataI: {type: 'string', title: 'Add Metric Data', pattern: '^\\d*$'}
+              'metricDataI': {'type': 'string', 'title': 'Add Metric Data', 'pattern': '^\\d*$'}
             })
         }else{
             schema.required = ['metricDataD', 'metricDate']
             schema.properties = Object.assign(schema.properties, {
-                metricDataD: {type: 'string', title: 'Add Metric Data', pattern: '^\\d+(\\.\\d+)?$'}
+                metricDataD: {'type': 'string', 'title': 'Add Metric Data', 'pattern': '^\\d+(\\.\\d+)?$'}
             })
         }
 
@@ -284,13 +284,13 @@ export default class Main extends Component {
             }
         }
  
-        addToData.push({point: curPoint, date: data.formData.metricDate})
-        this.setState({createMetricData: addToData})
+        addToData.push({'point': curPoint, 'date': data.formData.metricDate})
+        this.setState({'createMetricData': addToData})
     }
     deleteMetricPoint(place) {
         const removeData = this.state.createMetricData.slice()
         const leaveData = removeData.splice(place,1)
-        this.setState({createMetricData: removeData, errorAddition: ''})
+        this.setState({'createMetricData': removeData, 'errorAddition': ''})
     }
     deleteMetricFromDB(e){
         e.preventDefault()
@@ -299,22 +299,22 @@ export default class Main extends Component {
         const s = this.state
         const id = this.state.filedMetrics[this.state.mDeleteDDSelected]['id']
         fetch( '/delete-metric', {
-           method:'POST',
-           headers: {
+           'method':'POST',
+           'headers': {
              'Accept': 'application/json',
              'Content-Type': 'application/json',
            },
-           body: JSON.stringify({
-                fullmetric: id
+           'body': JSON.stringify({
+                'fullmetric': id
            })
         })
         .then(response => response.json())
         .then(success => {
             this.getMetrics()
-            this.setState({errorRemoval: ''})
+            this.setState({'errorRemoval': ''})
         })
         .catch(error => {
-            this.setState({errorRemoval: error.message})
+            this.setState({'errorRemoval': error.message})
         })
     }
     deleteMetricDataFromDB(e){
@@ -323,23 +323,23 @@ export default class Main extends Component {
         e.nativeEvent.stopImmediatePropagation()
         const s = this.state
         fetch( '/delete-metric', {
-           method:'POST',
-           headers: {
+           'method':'POST',
+           'headers': {
              'Accept': 'application/json',
              'Content-Type': 'application/json',
            },
-           body: JSON.stringify({
-                metricPoint: s.mDeletepSelected
+           'body': JSON.stringify({
+                'metricPoint': s.mDeletepSelected
            })
         })
         .then(response => response.json())
         .then(success => {
             console.log(success)
             this.getMetrics()
-            this.setState({errorRemoval: ''})
+            this.setState({'errorRemoval': ''})
         })
         .catch(error => {
-            this.setState({errorRemoval: error.message})
+            this.setState({'errorRemoval': error.message})
         })
     }
     updateMetricFromDB(e){
@@ -349,12 +349,12 @@ export default class Main extends Component {
         const s = this.state
         if(s.mUpdateMetricSelected.trim() != ''){
             fetch( '/update-metric', {
-               method:'POST',
-               headers: {
+               'method':'POST',
+               'headers': {
                  'Accept': 'application/json',
                  'Content-Type': 'application/json',
                },
-               body: JSON.stringify({
+               'body': JSON.stringify({
                     'metricName': s.mUpdateMetricSelected,
                     'metridID': s.filedMetrics[s.mUpdateDDSelected]['id']
                })
@@ -375,12 +375,12 @@ export default class Main extends Component {
         const s = this.state
         console.log(data.formData)
         fetch( '/update-metric', {
-           method:'POST',
-           headers: {
+           'method':'POST',
+           'headers': {
              'Accept': 'application/json',
              'Content-Type': 'application/json',
            },
-           body: JSON.stringify({
+           'body': JSON.stringify({
                 'metricPoints': data.formData,
                 'metricType': s.filedMetrics[s.mUpdateDDSelected]['type'],
                 'metricId': s.filedMetrics[s.mUpdateDDSelected]['id']
@@ -423,12 +423,12 @@ export default class Main extends Component {
         }
         if(e > 0){
             if(type == 'Integer'){
-                this.setState({errorAddition: 'Please change highlighted metric data to integers'})
+                this.setState({'errorAddition': 'Please change highlighted metric data to integers'})
             }else{
-                this.setState({errorAddition: 'Please change highlighted metric data to decimals'})
+                this.setState({'errorAddition': 'Please change highlighted metric data to decimals'})
             }
         }else{
-            this.setState({errorAddition: ''})
+            this.setState({'errorAddition': ''})
         }
     }
     outputMetricData() {

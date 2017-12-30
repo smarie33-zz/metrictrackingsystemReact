@@ -61079,21 +61079,21 @@ var Main = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
 
         _this.state = {
-            filedMetrics: [],
-            dates: [],
-            createMetricName: '',
-            createMetricType: '',
-            createMetricData: [],
-            datesEntered: [],
-            errorRemoval: '',
-            errorAddition: '',
-            errorUpdate: '',
-            error: '',
-            mDeleteDDSelected: 0,
-            mDeletepSelected: '',
-            mUpdateDDSelected: 0,
-            mUpdateMetricSelected: '',
-            metricFunction: 'add-metric',
+            'filedMetrics': [],
+            'dates': [],
+            'createMetricName': '',
+            'createMetricType': '',
+            'createMetricData': [],
+            'datesEntered': [],
+            'errorRemoval': '',
+            'errorAddition': '',
+            'errorUpdate': '',
+            'error': '',
+            'mDeleteDDSelected': 0,
+            'mDeletepSelected': '',
+            'mUpdateDDSelected': 0,
+            'mUpdateMetricSelected': '',
+            'metricFunction': 'add-metric',
             schema: schema,
             updateSchema: updateSchema,
             updateUiSchema: updateUiSchema,
@@ -61140,16 +61140,16 @@ var Main = function (_Component) {
             if (this.state.errorAddition == '') {
                 var s = this.state;
                 fetch('/save-metric', {
-                    method: 'POST',
-                    headers: {
+                    'method': 'POST',
+                    'headers': {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
-                        metricName: s.createMetricName,
-                        type: s.createMetricType,
-                        metrics: s.createMetricData,
-                        addDates: s.datesEntered
+                    'body': JSON.stringify({
+                        'metricName': s.createMetricName,
+                        'type': s.createMetricType,
+                        'metrics': s.createMetricData,
+                        'addDates': s.datesEntered
                     })
                 }).then(function (response) {
                     return response.json();
@@ -61204,8 +61204,8 @@ var Main = function (_Component) {
                         compensate++;
                     }
                     if (filedMetrics['metrics'][i]['point'] != '') {
-                        nonstateS.properties[d] = { type: 'string', format: 'date' }, nonstateS.properties[p] = { type: 'string', pattern: pattern, message: message };
-                        nonstateS.properties[id] = { type: 'string' };
+                        nonstateS.properties[d] = { 'type': 'string', 'format': 'date' }, nonstateS.properties[p] = { 'type': 'string', 'pattern': pattern, 'message': message };
+                        nonstateS.properties[id] = { 'type': 'string' };
                         nonstateS.required.push(p);
                         nonstateU[d] = { 'ui:options': { label: false }, classNames: 'mb-1' };
                         nonstateU[p] = { 'ui:options': { label: false }, classNames: 'mb-4' };
@@ -61213,7 +61213,7 @@ var Main = function (_Component) {
                         nonstateD[d] = filedMetrics['metrics'][i]['date'];
                         nonstateD[p] = filedMetrics['metrics'][i]['point'].toString();
                         nonstateD[id] = filedMetrics['metrics'][i]['id'].toString();
-                        this.setState({ updateSchema: nonstateS, updateFormData: nonstateD, updateUiSchema: nonstateU });
+                        this.setState({ 'updateSchema': nonstateS, 'updateFormData': nonstateD, 'updateUiSchema': nonstateU });
                     }
                 }
             }
@@ -61240,12 +61240,12 @@ var Main = function (_Component) {
             nonstateS.required.push('pointDate' + newPos);
             nonstateS.required.push('point' + newPos);
             nonstateS.properties['pointDate' + newPos] = { type: 'string', format: 'date' };
-            nonstateS.properties['id' + newPos] = { type: 'string' };
-            nonstateS.properties['point' + newPos] = { type: 'string', pattern: pattern, message: message };
-            nonstateU['pointDate' + newPos] = { 'ui:options': { label: false }, classNames: 'mb-1' };
-            nonstateU['point' + newPos] = { 'ui:options': { label: false }, classNames: 'mb-4' };
+            nonstateS.properties['id' + newPos] = { 'type': 'string' };
+            nonstateS.properties['point' + newPos] = { 'type': 'string', 'pattern': pattern, 'message': message };
+            nonstateU['pointDate' + newPos] = { 'ui:options': { 'label': false }, 'classNames': 'mb-1' };
+            nonstateU['point' + newPos] = { 'ui:options': { 'label': false }, 'classNames': 'mb-4' };
             nonstateU['id' + newPos] = { 'ui:widget': 'hidden' };
-            this.setState({ updateSchema: nonstateS, updateUiSchema: nonstateU });
+            this.setState({ 'updateSchema': nonstateS, 'updateUiSchema': nonstateU });
         }
     }, {
         key: 'transformErrorsUpdate',
@@ -61256,7 +61256,7 @@ var Main = function (_Component) {
                 var prop = error.property.replace('.', '');
                 if (_this4.state.updateSchema.properties[prop]['message'] != '') {
                     return _extends({}, error, {
-                        message: _this4.state.updateSchema.properties[prop]['message']
+                        'message': _this4.state.updateSchema.properties[prop]['message']
                     });
                 }
                 return error;
@@ -61320,12 +61320,12 @@ var Main = function (_Component) {
             if (data.formData.metricType == 'Integer') {
                 schema.required = ['metricDataI', 'metricDate'];
                 schema.properties = Object.assign(schema.properties, {
-                    metricDataI: { type: 'string', title: 'Add Metric Data', pattern: '^\\d*$' }
+                    'metricDataI': { 'type': 'string', 'title': 'Add Metric Data', 'pattern': '^\\d*$' }
                 });
             } else {
                 schema.required = ['metricDataD', 'metricDate'];
                 schema.properties = Object.assign(schema.properties, {
-                    metricDataD: { type: 'string', title: 'Add Metric Data', pattern: '^\\d+(\\.\\d+)?$' }
+                    metricDataD: { 'type': 'string', 'title': 'Add Metric Data', 'pattern': '^\\d+(\\.\\d+)?$' }
                 });
             }
 
@@ -61353,15 +61353,15 @@ var Main = function (_Component) {
                 }
             }
 
-            addToData.push({ point: curPoint, date: data.formData.metricDate });
-            this.setState({ createMetricData: addToData });
+            addToData.push({ 'point': curPoint, 'date': data.formData.metricDate });
+            this.setState({ 'createMetricData': addToData });
         }
     }, {
         key: 'deleteMetricPoint',
         value: function deleteMetricPoint(place) {
             var removeData = this.state.createMetricData.slice();
             var leaveData = removeData.splice(place, 1);
-            this.setState({ createMetricData: removeData, errorAddition: '' });
+            this.setState({ 'createMetricData': removeData, 'errorAddition': '' });
         }
     }, {
         key: 'deleteMetricFromDB',
@@ -61374,21 +61374,21 @@ var Main = function (_Component) {
             var s = this.state;
             var id = this.state.filedMetrics[this.state.mDeleteDDSelected]['id'];
             fetch('/delete-metric', {
-                method: 'POST',
-                headers: {
+                'method': 'POST',
+                'headers': {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    fullmetric: id
+                'body': JSON.stringify({
+                    'fullmetric': id
                 })
             }).then(function (response) {
                 return response.json();
             }).then(function (success) {
                 _this5.getMetrics();
-                _this5.setState({ errorRemoval: '' });
+                _this5.setState({ 'errorRemoval': '' });
             }).catch(function (error) {
-                _this5.setState({ errorRemoval: error.message });
+                _this5.setState({ 'errorRemoval': error.message });
             });
         }
     }, {
@@ -61401,22 +61401,22 @@ var Main = function (_Component) {
             e.nativeEvent.stopImmediatePropagation();
             var s = this.state;
             fetch('/delete-metric', {
-                method: 'POST',
-                headers: {
+                'method': 'POST',
+                'headers': {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
-                    metricPoint: s.mDeletepSelected
+                'body': JSON.stringify({
+                    'metricPoint': s.mDeletepSelected
                 })
             }).then(function (response) {
                 return response.json();
             }).then(function (success) {
                 console.log(success);
                 _this6.getMetrics();
-                _this6.setState({ errorRemoval: '' });
+                _this6.setState({ 'errorRemoval': '' });
             }).catch(function (error) {
-                _this6.setState({ errorRemoval: error.message });
+                _this6.setState({ 'errorRemoval': error.message });
             });
         }
     }, {
@@ -61430,12 +61430,12 @@ var Main = function (_Component) {
             var s = this.state;
             if (s.mUpdateMetricSelected.trim() != '') {
                 fetch('/update-metric', {
-                    method: 'POST',
-                    headers: {
+                    'method': 'POST',
+                    'headers': {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({
+                    'body': JSON.stringify({
                         'metricName': s.mUpdateMetricSelected,
                         'metridID': s.filedMetrics[s.mUpdateDDSelected]['id']
                     })
@@ -61459,12 +61459,12 @@ var Main = function (_Component) {
             var s = this.state;
             console.log(data.formData);
             fetch('/update-metric', {
-                method: 'POST',
-                headers: {
+                'method': 'POST',
+                'headers': {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({
+                'body': JSON.stringify({
                     'metricPoints': data.formData,
                     'metricType': s.filedMetrics[s.mUpdateDDSelected]['type'],
                     'metricId': s.filedMetrics[s.mUpdateDDSelected]['id']
@@ -61505,12 +61505,12 @@ var Main = function (_Component) {
             }
             if (e > 0) {
                 if (type == 'Integer') {
-                    this.setState({ errorAddition: 'Please change highlighted metric data to integers' });
+                    this.setState({ 'errorAddition': 'Please change highlighted metric data to integers' });
                 } else {
-                    this.setState({ errorAddition: 'Please change highlighted metric data to decimals' });
+                    this.setState({ 'errorAddition': 'Please change highlighted metric data to decimals' });
                 }
             } else {
-                this.setState({ errorAddition: '' });
+                this.setState({ 'errorAddition': '' });
             }
         }
     }, {
