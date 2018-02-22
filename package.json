@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
-    "devDependencies": {
+    "dependencies": {
         "axios": "^0.17",
         "babel-preset-react": "^6.23.0",
         "bootstrap-sass": "^3.3.7",
@@ -18,9 +18,7 @@
         "laravel-mix": "^1.0",
         "lodash": "^4.17.4",
         "react": "^15.4.2",
-        "react-dom": "^15.4.2"
-    },
-    "dependencies": {
+        "react-dom": "^15.4.2",
         "moment": "^2.20.0",
         "react-jsonschema-form": "^1.0.0",
         "react-moment": "^0.6.8"
